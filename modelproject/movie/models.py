@@ -1,5 +1,4 @@
 from django.db import models
-from staff.models import Staff
 
 class Movie(models.Model):
     title_kor = models.CharField(max_length=100)
@@ -13,4 +12,4 @@ class Movie(models.Model):
     release_date = models.CharField(max_length=50)
     rate = models.CharField(max_length=100)
     summary = models.TextField()
-    staff = models.ForeignKey(Staff,null=True,on_delete=models.CASCADE)
+
