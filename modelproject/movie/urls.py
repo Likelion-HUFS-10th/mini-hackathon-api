@@ -5,5 +5,4 @@ app_name = 'movie'
 
 urlpatterns = [
     path('<int:pk>/', detail, name="detail"),
-
 ]
