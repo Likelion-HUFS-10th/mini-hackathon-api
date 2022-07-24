@@ -41,6 +41,9 @@ def init_db(request):
 @api_view(['GET'])
 def home(request):
     movies = Movie.objects.all()
+    query = request.GET.get('query')
+    if query:
+        movies = Movie.objects.filter(title_kor__contains=query)
     serializer = MovieSerializer(movies,many=True)
     return Response(serializer.data)
 
