@@ -8,4 +8,4 @@ class LoginSerializer(serializers.Serializer):
 class SignupSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'password', 'nickname', 'university']
+        fields = ['username', 'password', 'nickname']
