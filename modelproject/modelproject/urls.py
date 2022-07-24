@@ -21,3 +21,4 @@ urlpatterns = [
     path('user/',include('account.urls')),
     path('movie/',include('movie.urls')),
 ]
+

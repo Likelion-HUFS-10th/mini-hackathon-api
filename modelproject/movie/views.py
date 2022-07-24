@@ -1,8 +1,11 @@
-from asyncio.windows_events import NULL
 from django.shortcuts import render, redirect
 from .models import Movie
 from staff.models import Staff
-import  requests
+import requests
+from .serializers import MovieSerializer
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 
 def init_db(request):
     url = "https://46f95f3a-8415-41f5-8848-c23892b059bb.mock.pstmn.io/movies"
@@ -33,4 +36,19 @@ def init_db(request):
             new_staff.save()
 
     return redirect('')
+
+@api_view(['GET'])
+def home(request):
+    movies = Movie.objects.all()
+    serializer = MovieSerializer(movies,many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def detail(request,pk):
+    try:
+        movie = Movie.objects.get(pk=pk)
+        serializer = MovieSerializer(movie)
+        return Response(serializer.data)
+    except Movie.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
