@@ -36,7 +36,7 @@ def init_db(request):
             new_staff.movie = new_movie
             new_staff.save()
 
-    return redirect('')
+    return redirect('home')
 
 @api_view(['GET'])
 def home(request):
