@@ -1,6 +1,12 @@
 from rest_framework import serializers
 from .models import *
+from staff.models import * 
 
+class StaffSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Staff
+        fields = ['id', 'role', 'image', 'movie']
+    
 class CommentGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
@@ -14,9 +20,8 @@ class CommentPostSerializer(serializers.ModelSerializer):
         read_only_fields = ['id']
 
 class MovieSerializer(serializers.ModelSerializer):
+    staffs = StaffSerializer(many=True, read_only=True)
     class Meta:
         model = Movie
-        fields = ['id','title_kor','title_eng','poster_url',
-                  'rating_aud','rating_cri','rating_net',
-                  'genre','showtimes','release_date','summary']
+        fields = '__all__'
         read_only_fields = ['id']

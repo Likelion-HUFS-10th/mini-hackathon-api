@@ -6,5 +6,5 @@ class Staff(models.Model):
     name = models.CharField(max_length=30)
     role = models.CharField(max_length=30)
     image = models.URLField()
-    movie = models.ForeignKey(Movie,on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, related_name="staffs", on_delete=models.CASCADE)
 
