@@ -75,8 +75,10 @@ def post_movie_comment(request, movie_id):
         serializer = CommentPostSerializer(data=request.data)
         movie = Movie.objects.get(pk = movie_id)
         if serializer.is_valid():
-            serializer.save(author=request.user, movie = movie)
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
+            if request.user.is_authenticated :
+                serializer.save(author=request.user, movie = movie)
+                return Response(serializer.data, status = status.HTTP_201_CREATED)
+            return Response(status = status.HTTP_403_UNAUTHORIZED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         print(e)
