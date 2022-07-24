@@ -91,7 +91,7 @@ def delete_movie_comment(request, comment_id):
         if comment.author == request.user:
             comment.delete()
             return Response(status = status.HTTP_200_OK)
-        return Response(status = status.HTTP_403_UNAUTHORIZED)
+        return Response(status = status.HTTP_401_UNAUTHORIZED)
     except Exception as e:
         print(e)
         return Response(status = status.HTTP_500_INTERNAL_SERVER_ERROR)
