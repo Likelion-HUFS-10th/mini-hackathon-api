@@ -6,6 +6,7 @@ from .serializers import MovieSerializer, CommentGetSerializer, CommentPostSeria
 from .models import *
 from staff.models import Staff
 import requests
+from django.core.paginator import Paginator
 
 # Create your views here.
 def init_db(request):
@@ -40,11 +41,13 @@ def init_db(request):
 
 @api_view(['GET'])
 def home(request):
-    movies = Movie.objects.all()
     query = request.GET.get('query')
     if query:
         movies = Movie.objects.filter(title_kor__contains=query)
-    serializer = MovieSerializer(movies,many=True)
+    paginator = Paginator(movies, 10)
+    page = request.GET.get('page')
+    paginated_movies = paginator.get_page(page)
+    serializer = MovieSerializer(paginated_movies, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
