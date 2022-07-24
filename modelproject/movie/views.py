@@ -56,7 +56,7 @@ def detail(request,pk):
 @api_view(['GET'])
 def get_movie_comments(request, movie_id):
     try:
-        comments = Comment.objects.get(movie__id = movie_id)
+        comments = Comment.objects.filter(movie__id = movie_id)
         serializer = CommentGetSerializer(comments, many = True)
         return Response(serializer.data, status = status.HTTP_200_OK)
     except Movie.DoesNotExist:
