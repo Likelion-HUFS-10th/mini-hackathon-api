@@ -44,6 +44,15 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+INSTALLED_APPS = ['corsheaders'] + INSTALLED_APPS
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # 가능한 한 위에 배치
+    'django.middleware.common.CommonMiddleware',
+] + MIDDLEWARE
+
+CORS_ALLOW_ALL_ORIGINS = True
+
 ROOT_URLCONF = 'modelproject.urls'
 
 TEMPLATES = [
@@ -68,6 +77,7 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "http://127.0.0.1:8000",
 ]
+
 
 
 # Database
