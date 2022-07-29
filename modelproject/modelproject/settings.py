@@ -76,6 +76,15 @@ WSGI_APPLICATION = 'modelproject.wsgi.application'
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "http://127.0.0.1:8000",
+    "http://127.0.0.1:8000/user/login",
+    "http://127.0.0.1:8000/user/logout",
+    "http://127.0.0.1:8000/user/signup",
+    "http://127.0.0.1:8000/movie/movielist/",
+    "http://127.0.0.1:8000/movie/<int:pk>/",
+    "http://127.0.0.1:8000/movie/comments/<int:movie_id>",
+    "http://127.0.0.1:8000/movie/comment/post/<int:movie_id",
+    "http://127.0.0.1:8000/movie/comment/delete/<int:comment_id>",
+
 ]
 
 
